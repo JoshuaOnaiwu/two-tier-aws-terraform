@@ -2,6 +2,16 @@ provider "aws" {
   region = "us-east-1"
 }
 
+module "network" {
+  source   = "../../modules/network"
+  vpc_cidr = "10.0.0.0/16"
+
+  azs = [
+    "us-east-1a",
+    "us-east-1b"
+  ]
+}
+
 resource "aws_s3_bucket" "terraform_state" {
   bucket = "two-tier-terraform-state-winters-2026"
 
