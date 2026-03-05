@@ -23,6 +23,7 @@ The architecture consists of an application tier running containerized workloads
 
 The project repository was structured to separate concerns between application code, infrastructure, and deployment tooling.
 
+'''
 two-tier-aws-terraform/
 │
 ├── app/ # Application code and container artifacts
@@ -32,6 +33,7 @@ two-tier-aws-terraform/
 ├── docs/ # Engineering documentation (ADR, incidents)
 ├── Dockerfile
 └── README.md
+'''
 
 
 ### Decision
