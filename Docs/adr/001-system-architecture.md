@@ -25,7 +25,7 @@ The project repository was structured to separate concerns between application c
 
 
 two-tier-aws-terraform/
-'''
+```
 │
 ├── app/ # Application code and container artifacts
 ├── infra/ # Infrastructure documentation and architecture diagrams
@@ -34,8 +34,7 @@ two-tier-aws-terraform/
 ├── docs/ # Engineering documentation (ADR, incidents)
 ├── Dockerfile
 └── README.md
-'''
-
+```
 
 ### Decision
 
