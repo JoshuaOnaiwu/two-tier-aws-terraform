@@ -42,8 +42,8 @@ resource "aws_ecs_task_definition" "app" {
 
   container_definitions = jsonencode([
     {
-      name      = "nginx"
-      image     = var.image_url
+      name      = "two-tier-app"
+      image     = "808850079759.dkr.ecr.us-east-1.amazonaws.com/two-tier-app:latest"
       essential = true
 
       portMappings = [
@@ -142,7 +142,7 @@ resource "aws_ecs_service" "app" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.app.arn
-    container_name   = "nginx"
+    container_name   = "two-tier-app"
     container_port   = 80
   }
 
@@ -151,11 +151,13 @@ resource "aws_ecs_service" "app" {
   ]
 }
 
+# CloudWatch Logs
 resource "aws_cloudwatch_log_group" "ecs_logs" {
   name              = "/ecs/two-tier-app"
   retention_in_days = 7
 }
 
+# ECR Repository
 resource "aws_ecr_repository" "app" {
   name = "two-tier-app"
 
