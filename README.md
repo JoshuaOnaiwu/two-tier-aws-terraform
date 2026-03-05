@@ -1,5 +1,15 @@
 # Two-Tier AWS Infrastructure with Terraform
 
+## System Capabilities
+
+* **Infrastructure as Code:** AWS networking and compute resources provisioned using modular Terraform.
+* **Automated CI/CD:** GitHub Actions pipeline executes Terraform plan and apply for infrastructure changes.
+* **Secure Deployment:** AWS access handled through OpenID Connect (OIDC), eliminating static credentials.
+* **Container Security:** Docker images scanned for vulnerabilities using Trivy before deployment.
+* **Cloud Observability:** CloudWatch dashboards monitor load balancer traffic and container performance.
+* **Operational Resilience:** Service outage simulation performed with documented root cause analysis and recovery steps.
+
+
 ## Architecture at a Glance
 
 This repository contains a production-style DevOps platform built on AWS using Infrastructure as Code and CI/CD automation.
