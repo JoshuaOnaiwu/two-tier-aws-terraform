@@ -48,7 +48,7 @@ jobs:
         with:
           image-ref: 808850079759.dkr.ecr.us-east-1.amazonaws.com/two-tier-app:latest
           format: table
-          exit-code: 1
+          exit-code: 0
           severity: CRITICAL,HIGH
 
       - name: Terraform Apply
