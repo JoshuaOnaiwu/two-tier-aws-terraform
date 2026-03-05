@@ -1,5 +1,39 @@
 # Two-Tier AWS Infrastructure with Terraform
 
+## Architecture at a Glance
+
+This repository contains a production-style DevOps platform built on AWS using Infrastructure as Code and CI/CD automation.
+
+**Core flow**
+
+Client → Application Load Balancer → ECS Fargate Containers → CloudWatch Monitoring
+
+**Infrastructure automation**
+
+Terraform provisions the entire environment including networking, load balancing, and compute resources.
+
+**Deployment pipeline**
+
+GitHub Actions automatically executes:
+
+* Terraform initialization
+* Terraform planning
+* Container vulnerability scanning
+* Infrastructure deployment
+
+**Security**
+
+Authentication between GitHub and AWS uses OpenID Connect, removing the need for static credentials. Container images are scanned for vulnerabilities using Trivy before deployment.
+
+**Observability**
+
+CloudWatch dashboards track load balancer traffic and container performance, enabling early detection of abnormal system behavior.
+
+**Operational validation**
+
+A controlled outage simulation was performed by scaling ECS tasks to zero. Monitoring captured the disruption, and a root cause analysis was documented in an incident report.
+
+
 ## Project Overview
 
 This project demonstrates a production-style **Two-Tier AWS architecture** deployed using **Terraform Infrastructure as Code** and automated through **GitHub Actions CI/CD pipelines**.
