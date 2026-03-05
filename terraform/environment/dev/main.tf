@@ -32,3 +32,6 @@ module "ecs" {
   image_url         = "nginx:latest"
 }
 
+module "iam" {
+  source = "../../modules/iam"
+}
