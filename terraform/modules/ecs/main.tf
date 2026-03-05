@@ -169,3 +169,43 @@ resource "aws_ecr_repository" "app" {
     encryption_type = "AES256"
   }
 }
+
+resource "aws_cloudwatch_dashboard" "ecs_dashboard" {
+  dashboard_name = "two-tier-observability"
+
+  dashboard_body = jsonencode({
+    widgets = [
+      {
+        type  = "metric"
+        width = 12
+        height = 6
+        properties = {
+          title  = "ALB Request Count"
+          view   = "timeSeries"
+          region = "us-east-1"
+          metrics = [
+            ["AWS/ApplicationELB", "RequestCount", "LoadBalancer", aws_lb.app.arn_suffix]
+          ]
+          period = 60
+          stat   = "Sum"
+        }
+      },
+
+      {
+        type  = "metric"
+        width = 12
+        height = 6
+        properties = {
+          title  = "ECS CPU Utilization"
+          view   = "timeSeries"
+          region = "us-east-1"
+          metrics = [
+            ["AWS/ECS", "CPUUtilization", "ClusterName", aws_ecs_cluster.main.name]
+          ]
+          period = 60
+          stat   = "Average"
+        }
+      }
+    ]
+  })
+}
