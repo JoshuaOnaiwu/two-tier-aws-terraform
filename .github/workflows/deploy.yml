@@ -19,35 +19,38 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Install Terraform on the GitHub runner
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.7.5
 
-      # Configure AWS using OIDC (secure authentication)
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::808850079759:role/github-actions-terraform-role
           aws-region: us-east-1
 
-      # Terraform Format Check (best practice)
       - name: Terraform Format
         run: terraform fmt -check
         working-directory: terraform/environment/dev
 
-      # Initialize Terraform
       - name: Terraform Init
         run: terraform init
         working-directory: terraform/environment/dev
 
-      # Terraform Plan
       - name: Terraform Plan
         run: terraform plan
         working-directory: terraform/environment/dev
 
-      # Terraform Apply
+      # Container security scan
+      - name: Run Trivy Vulnerability Scanner
+        uses: aquasecurity/trivy-action@0.20.0
+        with:
+          image-ref: 808850079759.dkr.ecr.us-east-1.amazonaws.com/two-tier-app:latest
+          format: table
+          exit-code: 1
+          severity: CRITICAL,HIGH
+
       - name: Terraform Apply
         run: terraform apply -auto-approve
         working-directory: terraform/environment/dev
