@@ -108,33 +108,16 @@ Observability
 
 two-tier-aws-terraform/
 
-.github/workflows/
-CI/CD automation pipeline
-
-app/
-Simple web application
-
-Docs/adr/
-Architecture Decision Records
-
-Docs/incidents/
-Incident simulation reports
-
-infra/backend/
-Terraform remote backend configuration
-
-terraform/environment/
-Environment-specific infrastructure
-
-terraform/modules/
-Reusable Terraform modules
-
-Screenshots/
-Deployment and monitoring evidence
-
-Dockerfile
-Container build definition
-
+```
+│
+├── app/ # Application code and container artifacts
+├── infra/ # Infrastructure documentation and architecture diagrams
+├── terraform/ # Terraform infrastructure modules
+├── Screenshots/ # Evidence of deployments and monitoring
+├── docs/ # Engineering documentation (ADR, incidents)
+├── Dockerfile
+└── README.md
+```
 ---
 
 # CI/CD Pipeline
